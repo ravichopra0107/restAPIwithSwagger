@@ -1,0 +1,142 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Simple Express API documented using Swagger UI",
+    "version": "1.0.0",
+    "title": "REST API"
+  },
+  "host": "rest-api123.herokuapp.com",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Lists",
+      "description": "Lists and everything..."
+    }
+  ],
+  "paths": {
+    "/getByTitle/{title}": {
+      "get": {
+        "tags": ["Lists"],
+        "summary": "Get List by Title",
+        "parameters": [
+          {
+            "name": "title",
+            "in": "path",
+            "description": "title of list to retrieve",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved",
+            "schema": {
+              "$ref": "#/definitions/List"
+            }
+          }
+        }
+      }
+    },
+    "/add": {
+      "post": {
+        "tags": ["Lists"],
+        "summary": "Add List to database",
+        "parameters": [
+          {
+            "name": "title",
+            "in": "formData",
+            "description": "Title",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "listBody",
+            "in": "formData",
+            "description": "list body",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully added"
+          }
+        }
+      }
+    },
+    "/getLists": {
+      "get": {
+        "tags": ["Lists"],
+        "summary": "Get Lists in database",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved"
+          }
+        }
+      }
+    },
+    "/updateBodyByTitle": {
+      "put": {
+        "tags": ["Lists"],
+        "summary": "Update List in database",
+        "parameters": [
+          {
+            "name": "title",
+            "in": "formData",
+            "description": "Title of item to update",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "listBody",
+            "in": "formData",
+            "description": "new body of item",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully added"
+          }
+        }
+      }
+    },
+    "/deleteByTitle/{title}": {
+      "delete": {
+        "tags": ["Lists"],
+        "summary": "Delete List in database",
+        "parameters": [
+          {
+            "name": "title",
+            "in": "path",
+            "description": "Title",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully added"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "List": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "listBody": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "List"
+      }
+    }
+  }
+}
